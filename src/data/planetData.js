@@ -20,8 +20,8 @@ export const PLANET_AUREA = {
     skywalkerObjective: objectives.fighter_ambush,
     skywalkerImperialEffect: "",
     skywalkerRebelEffect: "",
-    mapX: "",
-    mapY: ""
+    mapX: "32%",
+    mapY: "78%"
 };
 
 export const PLANET_CENTERPOINT = {
@@ -37,8 +37,8 @@ export const PLANET_CENTERPOINT = {
     skywalkerObjective: objectives.contested_outpost,
     skywalkerImperialEffect: "",
     skywalkerRebelEffect: "",
-    mapX: "",
-    mapY: ""
+    mapX: "30%",
+    mapY: "53%"
 };
 
 export const PLANET_CORELLIA = {
@@ -54,8 +54,8 @@ export const PLANET_CORELLIA = {
     skywalkerObjective: objectives.base_defense_armed_station,
     skywalkerImperialEffect: "",
     skywalkerRebelEffect: "",
-    mapX: "",
-    mapY: ""
+    mapX: "22.5%",
+    mapY: "45%"
 };
 
 export const PLANET_CORFAI = {
@@ -71,8 +71,8 @@ export const PLANET_CORFAI = {
     skywalkerObjective: objectives.precision_strike,
     skywalkerImperialEffect: "",
     skywalkerRebelEffect: "",
-    mapX: "",
-    mapY: ""
+    mapX: "60%",
+    mapY: "50%"
 };
 
 export const PLANET_CRASHS_DRIFT = {
@@ -88,8 +88,8 @@ export const PLANET_CRASHS_DRIFT = {
     skywalkerObjective: objectives.nebula_outskirts,
     skywalkerImperialEffect: "",
     skywalkerRebelEffect: "",
-    mapX: "",
-    mapY: ""
+    mapX: "1%",
+    mapY: "50%"
 };
 
 export const PLANET_DRALL = {
@@ -105,8 +105,8 @@ export const PLANET_DRALL = {
     skywalkerObjective: objectives.close_range_intel_scan,
     skywalkerImperialEffect: "",
     skywalkerRebelEffect: "",
-    mapX: "",
-    mapY: ""
+    mapX: "29%",
+    mapY: "33.5%"
 };
 
 export const PLANET_DURO = {
@@ -122,8 +122,8 @@ export const PLANET_DURO = {
     skywalkerObjective: objectives.hyperspace_assault,
     skywalkerImperialEffect: "",
     skywalkerRebelEffect: "",
-    mapX: "",
-    mapY: ""
+    mapX: "82%",
+    mapY: "75%"
 };
 
 export const PLANET_FORVAND = {
@@ -139,8 +139,8 @@ export const PLANET_FORVAND = {
     skywalkerObjective: objectives.independent_station,
     skywalkerImperialEffect: "",
     skywalkerRebelEffect: "",
-    mapX: "",
-    mapY: ""
+    mapX: "78%",
+    mapY: "48%"
 };
 
 export const PLANET_FROZ = {
@@ -156,8 +156,8 @@ export const PLANET_FROZ = {
     skywalkerObjective: objectives.opening_salvo,
     skywalkerImperialEffect: "",
     skywalkerRebelEffect: "",
-    mapX: "",
-    mapY: ""
+    mapX: "8%",
+    mapY: "14%"
 };
 
 export const PLANET_NEW_PLYMPTO = {
@@ -173,8 +173,8 @@ export const PLANET_NEW_PLYMPTO = {
     skywalkerObjective: objectives.dangerous_territory,
     skywalkerImperialEffect: "",
     skywalkerRebelEffect: "",
-    mapX: "",
-    mapY: ""
+    mapX: "70%",
+    mapY: "69.5%"
 };
 
 export const PLANET_NUBIA = {
@@ -190,8 +190,8 @@ export const PLANET_NUBIA = {
     skywalkerObjective: objectives.sensor_net,
     skywalkerImperialEffect: "",
     skywalkerRebelEffect: "",
-    mapX: "",
-    mapY: ""
+    mapX: "83%",
+    mapY: "28%"
 };
 
 export const PLANET_PHEMIS = {
@@ -207,8 +207,8 @@ export const PLANET_PHEMIS = {
     skywalkerObjective: objectives.most_wanted,
     skywalkerImperialEffect: "",
     skywalkerRebelEffect: "",
-    mapX: "",
-    mapY: ""
+    mapX: "37%",
+    mapY: "3%"
 };
 
 export const PLANET_PLYMPTO = {
@@ -224,8 +224,8 @@ export const PLANET_PLYMPTO = {
     skywalkerObjective: objectives.salvage_run,
     skywalkerImperialEffect: "",
     skywalkerRebelEffect: "",
-    mapX: "",
-    mapY: ""
+    mapX: "49%",
+    mapY: "62%"
 }
 
 export const PLANET_POLANIS = {
@@ -241,8 +241,8 @@ export const PLANET_POLANIS = {
     skywalkerObjective: objectives.jamming_barrier,
     skywalkerImperialEffect: "",
     skywalkerRebelEffect: "",
-    mapX: "",
-    mapY: ""
+    mapX: "39%",
+    mapY: "20%"
 };
 
 export const PLANET_RAIDERS_POINT = {
@@ -258,8 +258,8 @@ export const PLANET_RAIDERS_POINT = {
     skywalkerObjective: objectives.fleet_ambush,
     skywalkerImperialEffect: "",
     skywalkerRebelEffect: "",
-    mapX: "",
-    mapY: ""
+    mapX: "45%",
+    mapY: "35%"
 };
 
 export const PLANET_SABERHING_ASTEROID_BELT = {
@@ -275,11 +275,11 @@ export const PLANET_SABERHING_ASTEROID_BELT = {
     skywalkerObjective: objectives.asteroids,
     skywalkerImperialEffect: "",
     skywalkerRebelEffect: "",
-    mapX: "",
-    mapY: ""
+    mapX: "5%",
+    mapY: "75%"
 };
 
-export const PLANET_SACORIA = {
+export const PLANET_SACORRIA = {
     name: "Sacorria",
     imageSmall: "",
     imageLarge: "",
@@ -292,8 +292,8 @@ export const PLANET_SACORIA = {
     skywalkerObjective: objectives.solar_corona,
     skywalkerImperialEffect: "",
     skywalkerRebelEffect: "",
-    mapX: "",
-    mapY: ""
+    mapX: "22%",
+    mapY: "89%"
 }
 
 export const PLANET_SELONIA = {
@@ -309,8 +309,8 @@ export const PLANET_SELONIA = {
     skywalkerObjective: objectives.fire_lanes,
     skywalkerImperialEffect: "",
     skywalkerRebelEffect: "",
-    mapX: "",
-    mapY: ""
+    mapX: "14%",
+    mapY: "36%"
 };
 
 export const PLANET_SILERIA = {
@@ -326,8 +326,8 @@ export const PLANET_SILERIA = {
     skywalkerObjective: objectives.navigational_hazards,
     skywalkerImperialEffect: "",
     skywalkerRebelEffect: "",
-    mapX: "",
-    mapY: ""
+    mapX: "67%",
+    mapY: "16%"
 };
 
 export const PLANET_TALFAGLIO = {
@@ -343,8 +343,8 @@ export const PLANET_TALFAGLIO = {
     skywalkerObjective: objectives.minefields,
     skywalkerImperialEffect: "",
     skywalkerRebelEffect: "",
-    mapX: "",
-    mapY: ""
+    mapX: "80%",
+    mapY: "5%"
 };
 
 export const PLANET_TALUS = {
@@ -360,8 +360,8 @@ export const PLANET_TALUS = {
     skywalkerObjective: objectives.superior_positions,
     skywalkerImperialEffect: "",
     skywalkerRebelEffect: "",
-    mapX: "",
-    mapY: ""
+    mapX: "13%",
+    mapY: "55%"
 };
 
 export const PLANET_TRALUS = {
@@ -377,8 +377,8 @@ export const PLANET_TRALUS = {
     skywalkerObjective: objectives.intel_sweep,
     skywalkerImperialEffect: "",
     skywalkerRebelEffect: "",
-    mapX: "",
-    mapY: ""
+    mapX: "21%",
+    mapY: "62%"
 };
 
 export const PLANET_TRUUZDANN = {
@@ -394,8 +394,8 @@ export const PLANET_TRUUZDANN = {
     skywalkerObjective: objectives.capture_the_vip,
     skywalkerImperialEffect: "",
     skywalkerRebelEffect: "",
-    mapX: "",
-    mapY: ""
+    mapX: "63%",
+    mapY: "30%"
 };
 
 export const PLANET_VAGRAN = {
@@ -411,8 +411,8 @@ export const PLANET_VAGRAN = {
     skywalkerObjective: objectives.targeting_beacons,
     skywalkerImperialEffect: "",
     skywalkerRebelEffect: "",
-    mapX: "",
-    mapY: ""
+    mapX: "51%",
+    mapY: "83%"
 };
 
 export const PLANET_XYQUINE_II = {
@@ -428,9 +428,9 @@ export const PLANET_XYQUINE_II = {
     skywalkerObjective: objectives.advanced_gunnery,
     skywalkerImperialEffect: "",
     skywalkerRebelEffect: "",
-    mapX: "",
-    mapY: ""
+    mapX: "68%",
+    mapY: "88%"
 };
 
 
-export const planets = [PLANET_AUREA, PLANET_CENTERPOINT, PLANET_CORELLIA, PLANET_CORFAI, PLANET_CRASHS_DRIFT, PLANET_DRALL, PLANET_DURO, PLANET_FORVAND, PLANET_FROZ, PLANET_NEW_PLYMPTO, PLANET_NUBIA, PLANET_PHEMIS, PLANET_PLYMPTO, PLANET_POLANIS, PLANET_RAIDERS_POINT, PLANET_SABERHING_ASTEROID_BELT, PLANET_SACORIA, PLANET_SELONIA, PLANET_SILERIA, PLANET_TALFAGLIO, PLANET_TALUS, PLANET_TRALUS, PLANET_TRUUZDANN, PLANET_VAGRAN, PLANET_XYQUINE_II];
+export const planets = [PLANET_AUREA, PLANET_CENTERPOINT, PLANET_CORELLIA, PLANET_CORFAI, PLANET_CRASHS_DRIFT, PLANET_DRALL, PLANET_DURO, PLANET_FORVAND, PLANET_FROZ, PLANET_NEW_PLYMPTO, PLANET_NUBIA, PLANET_PHEMIS, PLANET_PLYMPTO, PLANET_POLANIS, PLANET_RAIDERS_POINT, PLANET_SABERHING_ASTEROID_BELT, PLANET_SACORRIA, PLANET_SELONIA, PLANET_SILERIA, PLANET_TALFAGLIO, PLANET_TALUS, PLANET_TRALUS, PLANET_TRUUZDANN, PLANET_VAGRAN, PLANET_XYQUINE_II];

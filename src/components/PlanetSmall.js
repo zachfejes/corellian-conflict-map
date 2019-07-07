@@ -5,9 +5,17 @@ export class PlanetSmall extends React.Component {
 
     renderStandard() {
         let { planet } = this.props;
+        let objectiveString = planet.ccObjectives.reduce((acc, x, index) => acc + x.name + (index < planet.ccObjectives.length - 1 ? ", " : ""), "");
+
+        if(objectiveString && planet.ccOtherObjectives > 0) {
+            objectiveString = objectiveString + ", +" + planet.ccOtherObjectives + " Objective Cards";
+        }
+        else if(planet.ccOtherObjectives > 0) {
+            objectiveString = "+ " + planet.ccOtherObjectives + " Objective Cards";
+        }
 
         return(
-            <div className="planetSmall">
+            <div className="planetSmall" style={{ top: planet.mapY, left: planet.mapX }}>
                 <div className="ringIcon">
                     <img src={planet.imageSmall} alt={planet.imageAlt} />
                     <div className="dynamicRing"/>
@@ -27,7 +35,7 @@ export class PlanetSmall extends React.Component {
                     <div className="slideLine"/>
                     <div className="details">
                         <p>{planet.ccStrategicEffect}</p>
-                        <p>{planet.ccObjectives.reduce((acc, x) => acc + (!acc ? "" : ", ") + x.name, "") + (planet.ccOtherObjectives > 0 ? "+" + planet.ccOtherObjectives + " Objective Cards" : "")}</p>
+                        <p>{objectiveString}</p>
                     </div>
                 </div>
             </div>
