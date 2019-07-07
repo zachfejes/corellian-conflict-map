@@ -139,20 +139,21 @@
 }
 
 .starMap > .hyperlane.corellianRun {
-    top: calc(220px);
-    left: calc(-15*100px - 40px);
-    width: calc(55*100px);
-    height: calc(55*100px);
+    /* top: calc(220px); */
+    top: calc(28.5%);
+    left: calc(-100.2%);
+    width: calc(358%);
+    height: calc(721%);
     border: 60px solid;
     border-color: rgba(255, 255, 255, 0.08) transparent transparent transparent;
     transform: rotate(32deg);
 }
 
 .starMap > .hyperlane.corellianTradeSpine {
-    top: calc(-55*100px + 15px);
-    left: calc(-15*100px + 70px);
-    width: calc(60*100px);
-    height: calc(60*100px);
+    top: calc(-719%);
+    left: calc(-93.1%);
+    width: calc(390%);
+    height: calc(786.3%);
     border: 60px solid;
     border-color: transparent transparent rgba(255, 255, 255, 0.08) transparent;
     transform: rotate(-26deg);
@@ -160,7 +161,7 @@
 
 .starMap > .hyperlane.backChannel {
     top: 50%;
-    left: -15px;
+    left: -1%;
     width: 230px;
     height: 60px;
     border: none;
