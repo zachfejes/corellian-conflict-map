@@ -1,12 +1,14 @@
 import React from 'react';
 import { PlanetSmall } from '../components';
+import { PLANET_CORELLIA, PLANET_FORVAND, PLANET_XYQUINE_II, PLANET_SABERHING_ASTEROID_BELT, PLANET_CRASHS_DRIFT } from '../data';
 import './StarMap.css';
 
 export class StarMap extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            focusIndex: -1
+            focusIndex: -1,
+            isSkywalker: false
         }
     }
 
@@ -47,16 +49,26 @@ export class StarMap extends React.Component {
     }
 
     renderPlanets() {
+        let { isSkywalker } = this.state;
 
+        return(
+            <PlanetSmall 
+                planet={PLANET_FORVAND} 
+                localFleet={undefined} 
+                bases={undefined} 
+                isSkywalker={isSkywalker} 
+            />
+        );
     }
 
     render() {
         let starField = this.renderStarField();
+        let planetElements = this.renderPlanets();
 
         return(
             <div className="starMap">
                 {starField}
-                <PlanetSmall/>
+                {planetElements}
             </div>
         );
     }

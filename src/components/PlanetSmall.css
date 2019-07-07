@@ -1,18 +1,189 @@
 .planetSmall {
     position: absolute;
-    top: calc(50% - 25px);
-    left: calc(50% - 25px);
-    width: 50px;
-    height: 50px;
-    background-color: black;
-    border: 1.5px solid white;
+    top: calc(50% - 30px);
+    left: calc(50% - 100px);
+    width: 250px;
+    height: 60px;
+    /* border: 1px solid white; */
+    transition: 200ms ease;
+}
+
+.planetSmall p {
+    margin: 0;
+    color: white;
+}
+
+/***** Ring Icon *****/
+
+.planetSmall > .ringIcon {
+    position: absolute;
+    top: calc(50% - 21.5px);
+    left: calc(35% - 21.5px);
+    width: 40px;
+    height: 40px;
+    /* background-color: black; */
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
     border-radius: 50%;
     transition: 200ms ease;
 }
 
-.planetSmall:hover {
+.planetSmall > .ringIcon:hover {
+    top: calc(50% - 41.5px);
+    left: calc(35% - 41.5px);
+    width: 80px;
+    height: 80px;
+    /* background-color: black; */
+    border: 1.5px solid white;
+    border-radius: 50%;
+}
+
+.planetSmall > .ringIcon > .dynamicRing {
+    position: absolute;
+    top: calc(50% - 46.5px);
+    left: calc(50% - 46.5px);
+    width: 90px;
+    height: 90px;
+    border: 1.5px solid;
+    border-radius: 100%;
+    border-color: transparent white transparent white;
+    transition: 0ms;
+    transition-delay: 0ms;
+    opacity: 0;
+}
+
+.planetSmall > .ringIcon:hover > .dynamicRing {
+    transition: 200ms;
+    transition-delay: 200ms;
+    opacity: 1;
+    animation-name: fullRotation;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes fullRotation {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.planetSmall > .ringIcon > img {
+    position: absolute;
+    top: calc(50% - 20px);
+    left: calc(50% - 20px);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: 200ms ease;
+}
+
+.planetSmall > .ringIcon:hover > img {
     top: calc(50% - 30px);
     left: calc(50% - 30px);
     width: 60px;
     height: 60px;
+    transition: 300ms ease;
+}
+
+/***** Left Box *****/
+
+.planetSmall > .leftBox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 30px;
+    /* border: 1px solid white; */
+    opacity: 0;
+    transition: 200ms ease;
+    transition-delay: 0ms;
+}
+
+.planetSmall > .ringIcon:hover ~ .leftBox {
+    opacity: 1;
+    transition: 300ms ease;
+    transition-delay: 400ms;
+}
+
+.planetSmall > .leftBox > div {
+    position: relative;
+    width: calc(100% - 3px);
+    height: calc(50% - 5px);
+    text-align: right;
+    padding-right: 3px;
+    padding-top: 4px;
+    border: 1px solid white;
+    border-bottom-left-radius: 50%;
+}
+
+.planetSmall > .leftBox > div:nth-child(1) {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.planetSmall > .leftBox > div:nth-child(2) {
+    background-color: rgba(255,255,255,0.2);
+}
+
+.planetSmall > .leftBox > div > p {
+    color: white;
+    font-size: 15px;
+    padding: 0;
+    margin: 0;
+}
+
+/***** Right Box *****/
+
+.planetSmall > .rightBox {
+    position: absolute;
+    top: 0;
+    right: -125px;
+    bottom: 0;
+    width: 250px;
+    /* border: 1px solid white; */
+    transition: 200ms ease;
+}
+
+.planetSmall > .ringIcon:hover ~ .rightBox {
+    right: -145px;
+}
+
+.planetSmall > .rightBox > p {
+    color: white;
+    margin: 0;
+}
+
+.planetSmall > .rightBox > .slideLine {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    width: 100px;
+    height: 1px;
+    background-color: white;
+    transition: 400ms ease;
+}
+
+.planetSmall > .ringIcon:hover ~ .rightBox > .slideLine {
+    width: 50px;
+}
+
+.planetSmall > .rightBox > .details {
+    position: absolute;
+    top: 25px;
+    left: 0;
+    right: 0;
+    height: 70px;
+    /* border: 1px solid white; */
+    opacity: 0;
+    transition: 200ms ease;
+    transition-delay: 0ms;
+}
+
+.planetSmall > .ringIcon:hover ~ .rightBox > .details {
+    opacity: 1;
+    transition: 300ms ease;
+    transition-delay: 400ms;
+}
+
+.planetSmall > .rightBox > .details > p {
+    font-size: 12px;
+    margin-bottom: 5px;
 }
