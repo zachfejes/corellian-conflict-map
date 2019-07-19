@@ -86,14 +86,32 @@ export class StarMap extends React.Component {
         return hyperlaneElements;
     }
 
+    renderCampaignRulesToggle() {
+        let { isSkywalker } = this.state;
+
+        let toggleSkywalker = () => {
+            this.setState({
+                isSkywalker: !isSkywalker
+            });
+        }
+
+        return(
+            <div className="campaignToggle">
+                <button onClick={toggleSkywalker}>{isSkywalker ? "Skywalker Campaign" : "Corellian Conflict"}</button>
+            </div>
+        )
+    }
+
     render() {
         let starField = this.renderStarField();
         let planetElements = this.renderPlanets();
         let grid = this.renderGrid();
         let hyperlaneElements = this.renderHyperlanes();
+        let campaignToggle = this.renderCampaignRulesToggle();
 
         return(
             <div className="starMap">
+                {campaignToggle}
                 {grid}
                 {starField}
                 {hyperlaneElements}

@@ -45,11 +45,22 @@ export class PlanetSmall extends React.Component {
 
     renderSkywalker() {
         let { planet } = this.props;
+        let objectiveString = planet.skywalkerObjective.name;
 
         return(
-            <div className="planetSmall">
-                <div className="ringIcon"/>
+            <div className="planetSmall" style={{ top: planet.mapY, left: planet.mapX }}>
+                <div className="ringIcon">
+                    <img src={planet.imageSmall} alt={planet.imageAlt} />
+                    <div className="dynamicRing"/>
+                </div>
 
+                <div className="rightBox">
+                    <p>{planet.name.toUpperCase()}</p>
+                    <div className="slideLine"/>
+                    <div className="details">
+                        <p>{objectiveString}</p>
+                    </div>
+                </div>
             </div>
         );
     }
