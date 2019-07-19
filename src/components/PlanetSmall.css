@@ -23,7 +23,7 @@
     width: 40px;
     height: 40px;
     /* background-color: black; */
-    border: 1.5px solid rgba(255, 255, 255, 0.5);
+    border: 1.5px solid rgba(255, 255, 255, 0.2);
     border-radius: 50%;
     transition: 200ms ease;
     z-index: 10;
@@ -35,7 +35,7 @@
     width: 80px;
     height: 80px;
     /* background-color: black; */
-    border: 1.5px solid white;
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
     border-radius: 50%;
 }
 
@@ -47,7 +47,7 @@
     height: 90px;
     border: 1.5px solid;
     border-radius: 100%;
-    border-color: transparent white transparent white;
+    border-color: transparent rgba(255, 255, 255, 0.5) transparent rgba(255, 255, 255, 0.5);
     transition: 0ms;
     transition-delay: 0ms;
     opacity: 0;
@@ -79,6 +79,8 @@
     transition: 200ms ease;
     z-index: 9;
     pointer-events: none;
+    -webkit-mask-image: radial-gradient(rgba(0,0,0,1) 40%,rgba(0,0,0,0.0) 60%);
+    mask-image: radial-gradient(rgba(0,0,0,1) 40%,rgba(0,0,0,0.0) 60%)
 }
 
 .planetSmall > .ringIcon:hover > img {
@@ -156,7 +158,7 @@
 }
 
 .planetSmall > .rightBox > p {
-    color: white;
+    color: rgba(255, 255, 255, 0.2);
     margin: 0;
     padding-top:4px;
     font-size: 12px;
@@ -164,6 +166,7 @@
 }
 
 .planetSmall > .ringIcon:hover ~ .rightBox > p {
+    color: rgba(255, 255, 255, 0.8);
     padding-top: 0px;
     font-size: 16px;
 }
@@ -174,7 +177,7 @@
     left: 0;
     width: 100px;
     height: 1px;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.2);
     transition: 400ms ease;
     z-index: 0;
     pointer-events: none;
@@ -182,6 +185,7 @@
 
 .planetSmall > .ringIcon:hover ~ .rightBox > .slideLine {
     width: 50px;
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .planetSmall > .rightBox > .details {
@@ -205,6 +209,7 @@
 }
 
 .planetSmall > .rightBox > .details > p {
+    color: rgba(255, 255, 255, 0.8);
     font-size: 12px;
     margin-bottom: 5px;
 }
