@@ -1,9 +1,10 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { PlanetSmall } from '../components';
 import { planets } from '../data';
 import './StarMap.css';
 
-export class StarMap extends React.Component {
+class StarMap extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -120,3 +121,5 @@ export class StarMap extends React.Component {
         );
     }
 }
+
+export default withRouter(StarMap);

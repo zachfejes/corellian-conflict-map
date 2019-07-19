@@ -1,2 +1,4 @@
-export * from './PlanetDetails';
-export * from './StarMap';
+import PlanetDetails from './PlanetDetails';
+import StarMap from './StarMap';
+
+export { PlanetDetails, StarMap };

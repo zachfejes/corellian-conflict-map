@@ -1,9 +1,10 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import './PlanetSmall.css';
 
-export class PlanetSmall extends React.Component {
+class PlanetSmall extends React.Component {
 
-    renderStandard() {
+    renderStandard(props) {
         let { planet } = this.props;
         let objectiveString = planet.ccObjectives.reduce((acc, x, index) => acc + x.name + (index < planet.ccObjectives.length - 1 ? ", " : ""), "");
 
@@ -16,7 +17,7 @@ export class PlanetSmall extends React.Component {
 
         return(
             <div className="planetSmall" style={{ top: planet.mapY, left: planet.mapX }}>
-                <div className="ringIcon">
+                <div className="ringIcon" onClick={() => { this.props.history.push("/planet"); }}>
                     <img src={planet.imageSmall} alt={planet.imageAlt} />
                     <div className="dynamicRing"/>
                 </div>
@@ -76,3 +77,5 @@ export class PlanetSmall extends React.Component {
         }
     }
 }
+
+export default withRouter(PlanetSmall);

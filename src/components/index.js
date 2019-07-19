@@ -1,1 +1,3 @@
-export * from './PlanetSmall';
+import PlanetSmall from './PlanetSmall';
+
+export { PlanetSmall };
