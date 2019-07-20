@@ -1,3 +1,12 @@
+p, h1, h2, h3, h4, h5, span, small, a, button {
+    font-family: 'Roboto', sans-serif;
+    font-weight: normal;
+}
+
+p.aurebesh {
+    font-family: 'Aurebesh';
+}
+
 .starMap {
     position: relative;
     width: 100%;
@@ -6,57 +15,6 @@
     min-height: 100vh;
     background-color: black;
     overflow: hidden;
-}
-
-.starField {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.largeStar {
-    position: absolute;
-    width: 3px;
-    height: 3px;
-    top: calc(50vh - 1.5px);
-    left: calc(50% - 1.5px);
-    background-color: white;
-    opacity: 1;
-    animation-name: starTwinkle;
-    animation-duration: 8s;
-    animation-iteration-count: infinite;
-}
-
-.mediumStar {
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    top: calc(50vh - 1.5px);
-    left: calc(40% - 1.5px);
-    background-color: white;
-    opacity: 1;
-    animation-name: starTwinkle;
-    animation-duration: 8s;
-    animation-iteration-count: infinite;
-}
-
-.smallStar {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    top: calc(50vh - 1.5px);
-    left: calc(30% - 1.5px);
-    background-color: white;
-    opacity: 1;
-    animation-name: starTwinkle;
-    animation-duration: 8s;
-    animation-iteration-count: infinite;
-}
-
-@keyframes starTwinkle {
-    0% { opacity: 1; }
-    50% { opacity: 0; }
-    100% { opacity: 1; }
 }
 
 .starMap > .gridWrapper {

@@ -5,3 +5,30 @@ html, body, body>#root {
   margin: 0;
   padding: 0;
 }
+
+@font-face {
+  font-family: 'Aurebesh';
+  font-style: normal;
+  font-weight: 400;
+  src: 
+      local('Aurebesh'),
+      url(./fonts/Aurebesh.ttf);
+}
+
+@font-face {
+  font-family: 'Aurebesh';
+  font-style: normal;
+  font-weight: 400;
+  src:
+    local('Aurebesh'),
+    url(./fonts/Aurebesh.ttf);
+}
+
+@font-face {
+  font-family: 'Aurebesh';
+  font-style: normal;
+  font-weight: 700;
+  src:
+    local('Aurebesh Bold'),
+    url(./fonts/Aurebesh-Bold.ttf);
+}

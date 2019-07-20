@@ -1,16 +1,21 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
-import { PlanetSmall } from '../components';
+import { PlanetDetails } from "./PlanetDetails";
+import { PlanetSmall, StarField } from '../components';
 import { planets } from '../data';
 import './StarMap.css';
 
-class StarMap extends React.Component {
+export class StarMap extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            focusIndex: -1,
+            focusPlanet: undefined,
             isSkywalker: false
         }
+    }
+
+    setFocusPlanet(planet) {
+        let focusPlanet = planet || undefined;
+        this.setState({ focusPlanet });
     }
 
     renderGrid() {
@@ -27,42 +32,6 @@ class StarMap extends React.Component {
         );
     }
 
-    renderStarField() {
-        let smallStars = [], mediumStars = [], largeStars = [];
-
-        for(let i = 0; i < 300; i++) {
-            if(i < 15) {
-                largeStars.push(<div className="largeStar" style={{
-                    left: (Math.random()*97 + '%'), 
-                    top: (Math.random()*97 + '%'),
-                    'animation-delay': (Math.random()*8 + 's')
-                }}/>);
-            }
-
-            if(i < 100) {
-                mediumStars.push(<div className="mediumStar" style={{
-                    left: (Math.random()*98 + '%'), 
-                    top: (Math.random()*98 + '%'),
-                    'animation-delay': (Math.random()*8 + 's')
-                }}/>);
-            }
-
-            smallStars.push(<div className="smallStar" style={{
-                left: (Math.random()*99 + '%'), 
-                top: (Math.random()*99 + '%'),
-                'animation-delay': (Math.random()*8 + 's') 
-            }}/>);
-        }
-
-        return(
-            <div className="starField">
-                {smallStars}
-                {mediumStars}
-                {largeStars}
-            </div>
-        );
-    }
-
     renderPlanets() {
         let { isSkywalker } = this.state;
 
@@ -72,6 +41,7 @@ class StarMap extends React.Component {
                 localFleet={undefined} 
                 bases={undefined} 
                 isSkywalker={isSkywalker} 
+                setFocusPlanet={this.setFocusPlanet.bind(this)}
             />);
 
         return(planetElements);
@@ -104,7 +74,6 @@ class StarMap extends React.Component {
     }
 
     render() {
-        let starField = this.renderStarField();
         let planetElements = this.renderPlanets();
         let grid = this.renderGrid();
         let hyperlaneElements = this.renderHyperlanes();
@@ -112,14 +81,13 @@ class StarMap extends React.Component {
 
         return(
             <div className="starMap">
+                <StarField />
+                <PlanetDetails focusPlanet={this.state.focusPlanet} setFocusPlanet={this.setFocusPlanet.bind(this)} />
                 {campaignToggle}
                 {grid}
-                {starField}
                 {hyperlaneElements}
                 {planetElements}
             </div>
         );
     }
 }
-
-export default withRouter(StarMap);

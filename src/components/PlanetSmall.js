@@ -5,7 +5,7 @@ import './PlanetSmall.css';
 class PlanetSmall extends React.Component {
 
     renderStandard(props) {
-        let { planet } = this.props;
+        let { planet, setFocusPlanet } = this.props;
         let objectiveString = planet.ccObjectives.reduce((acc, x, index) => acc + x.name + (index < planet.ccObjectives.length - 1 ? ", " : ""), "");
 
         if(objectiveString && planet.ccOtherObjectives > 0) {
@@ -17,7 +17,7 @@ class PlanetSmall extends React.Component {
 
         return(
             <div className="planetSmall" style={{ top: planet.mapY, left: planet.mapX }}>
-                <div className="ringIcon" onClick={() => { this.props.history.push("/planet"); }}>
+                <div className="ringIcon" onClick={() => { this.props.setFocusPlanet(planet) }}>
                     <img src={planet.imageSmall} alt={planet.imageAlt} />
                     <div className="dynamicRing"/>
                 </div>

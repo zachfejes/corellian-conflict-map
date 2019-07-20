@@ -1,0 +1,151 @@
+.lightbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 9;
+    transition: 100ms ease;
+    background-color: rgba(0, 0, 0, 0);
+    visibility: hidden;
+}
+
+.lightbox.show {
+    visibility: visible;
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: 100ms ease;
+}
+
+.lightbox > .planetDetailsModal {
+    position: absolute;
+    top: 100%;
+    left: 50px;
+    height: calc(100% - 100px);
+    width: calc(100% - 100px);
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-bottom-left-radius: 50px;
+    z-index: 10;
+    transition: 0ms;
+    overflow: hidden;
+}
+
+.lightbox.show > .planetDetailsModal {
+    transition: 200ms ease;
+    top: 50px;
+}
+
+.planetDetailsModal > button.exit {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border: none;
+    color: white;
+}
+
+
+/* Image */
+
+.planetDetailsModal > .imageContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+}
+
+.planetDetailsModal > .imageContainer > img.location {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 60%;
+    width: auto;
+    height: 100%;
+}
+
+.planetDetailsModal > .imageContainer > .gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 60%);
+}
+
+
+/* Content */
+
+.planetDetailsModal > .content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 200px;
+    width: 45%;
+    height: 100%;
+    /* background-color: red; */
+}
+
+.planetDetailsModal > .content p,
+.planetDetailsModal > .content h3,
+.planetDetailsModal > .content h4 {
+    color: rgba(255, 255, 255, 0.8);
+    padding: 0;
+    margin: 0;
+}
+
+.planetDetailsModal > .content h3 {
+    margin-top: 40px;
+    font-size: 40px;
+    text-transform: capitalize;
+}
+
+.planetDetailsModal > .content h4 {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-size: 20px;
+    text-transform: capitalize;
+}
+
+
+/* Bonus Cards */
+
+
+.planetDetailsModal > .content > .resourceBonusCard,
+.planetDetailsModal > .content > .victoryBonusCard {
+    position: absolute;
+    bottom: 130px;
+    width: 120px;
+    height: 120px;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-bottom-left-radius: 20px;
+    text-align: center;
+}
+
+.planetDetailsModal > .content > .resourceBonusCard p:first-child,
+.planetDetailsModal > .content > .victoryBonusCard p:first-child {
+    font-size: 60px;
+    padding: 0;
+    margin: 0;
+    padding-top: 10px;
+}
+
+.planetDetailsModal > .content > .resourceBonusCard p:last-child,
+.planetDetailsModal > .content > .victoryBonusCard p:last-child {
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+}
+
+.planetDetailsModal > .content > .resourceBonusCard {
+    left: calc(50% - 130px);
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.planetDetailsModal > .content > .victoryBonusCard {
+    left: calc(50% + 30px);
+    background-color: rgba(255, 255, 255, 0.1);
+}
