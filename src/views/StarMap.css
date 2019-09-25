@@ -37,8 +37,8 @@ p.aurebesh {
 
 .starMap > .gridWrapper > .corellianSector {
     position: absolute;
-    top: calc(48.8% - 200px);
-    left: calc(28.1% - 200px);
+    top: calc(48.8% - 199px);
+    left: calc(28.1% - 199px);
     width: 400px;
     height: 400px;
 }
@@ -50,41 +50,41 @@ p.aurebesh {
 }
 
 .starMap > .gridWrapper > .corellianSector > div:nth-child(1) {
-    top: calc(50% - 201px);
-    left: calc(50% - 201px);
-    width: 400px;
-    height: 400px;
+    top: calc(50% - 50% - 1px);
+    left: calc(50% - 50% - 1px);
+    width: 100%;
+    padding-top: 100%;
     border: 2px dashed rgba(255, 255, 255, 0.1);
 }
 
 .starMap > .gridWrapper > .corellianSector > div:nth-child(2) {
-    top: calc(50% - 195px);
-    left: calc(50% - 195px);
-    width: 390px;
-    height: 390px;
+    top: calc(50% - 48.75% - 0.5px);
+    left: calc(50% - 48.75% - 0.5px);
+    width: 97.5%;
+    padding-top: 97.5%;
 
 }
 
 .starMap > .gridWrapper > .corellianSector > div:nth-child(3) {
-    top: calc(50% - 220px);
-    left: calc(50% - 220px);
-    width: 440px;
-    height: 440px;
+    top: calc(50% - 55% - 0.5px);
+    left: calc(50% - 55% - 0.5px);
+    width: 110%;
+    padding-top: 110%;
     border: 1px dashed rgba(255, 255, 2555, 0.2);
 }
 
 .starMap > .gridWrapper > .corellianSector > div:nth-child(4) {
-    top: calc(50% - 125px);
-    left: calc(50% - 125px);
-    width: 250px;
-    height: 250px;
+    top: calc(50% - 31.25% - 0.5px);
+    left: calc(50% - 31.25% - 0.5px);
+    width: 62.5%;
+    padding-top: 62.5%;
 }
 
 .starMap > .gridWrapper > .corellianSector > div:nth-child(5) {
-    top: calc(50% - 49px);
-    left: calc(50% - 49px);
-    width: 100px;
-    height: 100px;
+    top: calc(50% - 12.5% - 0.5px);
+    left: calc(50% - 12.5% - 0.5px);
+    width: 25%;
+    padding-top: 25%;
 }
 
 
@@ -103,7 +103,7 @@ p.aurebesh {
     width: calc(358%);
     height: calc(721%);
     border: 60px solid;
-    border-color: rgba(255, 255, 255, 0.08) transparent transparent transparent;
+    border-color: rgba(255, 255, 255, 0.04) transparent transparent transparent;
     transform: rotate(32deg);
 }
 
@@ -113,7 +113,7 @@ p.aurebesh {
     width: calc(390%);
     height: calc(786.3%);
     border: 60px solid;
-    border-color: transparent transparent rgba(255, 255, 255, 0.08) transparent;
+    border-color: transparent transparent rgba(255, 255, 255, 0.04) transparent;
     transform: rotate(-26deg);
 }
 
@@ -124,7 +124,7 @@ p.aurebesh {
     height: 60px;
     border: none;
     border-radius: 0;
-    background-color: rgba(255, 255, 255, 0.08);
+    background-color: rgba(255, 255, 255, 0.04);
     transform: rotate(-5deg);
 }
 

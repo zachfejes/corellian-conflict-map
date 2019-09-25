@@ -7,6 +7,8 @@
     /* border: 1px solid white; */
     transition: 200ms ease;
     z-index: 0;
+    margin-left: -85px;
+    margin-top: -28.8px;
 }
 
 .planetSmall p {
