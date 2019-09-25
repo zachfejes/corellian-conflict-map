@@ -82,7 +82,7 @@ export class StarMap extends React.Component {
         return(
             <div className="starMap">
                 <StarField />
-                <PlanetDetails focusPlanet={this.state.focusPlanet} setFocusPlanet={this.setFocusPlanet.bind(this)} />
+                <PlanetDetails focusPlanet={this.state.focusPlanet} isSkywalker={this.state.isSkywalker} setFocusPlanet={this.setFocusPlanet.bind(this)} />
                 {campaignToggle}
                 {grid}
                 {hyperlaneElements}

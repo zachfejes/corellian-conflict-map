@@ -82,9 +82,9 @@
 .planetDetailsModal > .content {
     position: absolute;
     top: 0;
-    right: 0;
+    right: 100px;
     min-width: 200px;
-    width: 45%;
+    width: calc(45% - 100px);
     height: 100%;
     /* background-color: red; */
 }
@@ -113,39 +113,85 @@
 
 /* Bonus Cards */
 
+.planetDetailsModal > .content > .bonuses {
+    margin: 0;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
 
-.planetDetailsModal > .content > .resourceBonusCard,
-.planetDetailsModal > .content > .victoryBonusCard {
-    position: absolute;
-    bottom: 130px;
-    width: 120px;
-    height: 120px;
+.planetDetailsModal > .content > .bonuses.hidden {
+    opacity: 0;
+}
+
+
+.planetDetailsModal > .content > .bonuses > .resourceBonusCard,
+.planetDetailsModal > .content > .bonuses > .victoryBonusCard {
+    display: inline-block;
+    width: 74px;
+    height: 74px;
     border: 2px solid rgba(255, 255, 255, 0.8);
     border-bottom-left-radius: 20px;
     text-align: center;
 }
 
-.planetDetailsModal > .content > .resourceBonusCard p:first-child,
-.planetDetailsModal > .content > .victoryBonusCard p:first-child {
-    font-size: 60px;
-    padding: 0;
-    margin: 0;
-    padding-top: 10px;
-}
-
-.planetDetailsModal > .content > .resourceBonusCard p:last-child,
-.planetDetailsModal > .content > .victoryBonusCard p:last-child {
-    font-size: 14px;
+.planetDetailsModal > .content > .bonuses > .resourceBonusCard p:first-child,
+.planetDetailsModal > .content > .bonuses > .victoryBonusCard p:first-child {
+    font-size: 35px;
     padding: 0;
     margin: 0;
 }
 
-.planetDetailsModal > .content > .resourceBonusCard {
-    left: calc(50% - 130px);
+.planetDetailsModal > .content > .bonuses > .resourceBonusCard p:last-child,
+.planetDetailsModal > .content > .bonuses > .victoryBonusCard p:last-child {
+    font-size: 12px;
+    padding: 0;
+    margin: 0;
+}
+
+.planetDetailsModal > .content > .bonuses > .resourceBonusCard {
     background-color: rgba(255, 255, 255, 0.3);
+    margin-right: 30px;
 }
 
-.planetDetailsModal > .content > .victoryBonusCard {
-    left: calc(50% + 30px);
+.planetDetailsModal > .content > .bonuses > .victoryBonusCard {
     background-color: rgba(255, 255, 255, 0.1);
+}
+
+.planetDetailsModal .planetObjective {
+    max-width: 100%;
+    height: 120px;
+    max-height: 280px;
+    /* border: 2px solid #FFFFFF; */
+}
+
+.planetDetailsModal .planetObjective p {
+    font-size: 12px;
+}
+
+.planetDetailsModal .planetObjective h5 {
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.planetDetailsModal .planetObjective > div {
+    margin-bottom: 5px;
+}
+
+.planetDetailsModal .planetObjective button {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    transition: 100ms ease;
+    cursor: pointer;
+}
+.planetDetailsModal .planetObjective button:focus,
+.planetDetailsModal .planetObjective button:active {
+    outline: 0;
+}
+.planetDetailsModal .planetObjective button:hover,
+.planetDetailsModal .planetObjective button.active {
+    background-color: rgba(255, 255, 255, 0.3);
+    border: none;
+    outline: none;
 }

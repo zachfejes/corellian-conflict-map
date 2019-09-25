@@ -32,3 +32,8 @@ html, body, body>#root {
     local('Aurebesh Bold'),
     url(./fonts/Aurebesh-Bold.ttf);
 }
+
+button, button:hover, button:active, button:focus {
+  outline: 0;
+  border: none;
+}

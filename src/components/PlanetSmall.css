@@ -107,10 +107,17 @@
     pointer-events: none;
 }
 
+.planetSmall > .leftBox.hidden {
+    opacity: 0;
+}
+
 .planetSmall > .ringIcon:hover ~ .leftBox {
     opacity: 1;
     transition: 300ms ease;
     transition-delay: 400ms;
+}
+.planetSmall > .ringIcon:hover ~ .leftBox.hidden {
+    opacity: 0;
 }
 
 .planetSmall > .leftBox > div {
