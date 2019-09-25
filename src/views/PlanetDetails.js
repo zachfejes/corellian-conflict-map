@@ -1,5 +1,6 @@
 import React from 'react';
 import './PlanetDetails.css';
+import { CAMPAIGN_SKYWALKER, planets, REBEL_PRESENCE, REBEL_OUTPOST, REBEL_BASE, IMPERIAL_BASE, BASE_DESTROYED } from '../data';
 
 
 export class PlanetDetails extends React.Component {
@@ -28,7 +29,6 @@ export class PlanetDetails extends React.Component {
             { name: "Erratia", id: "clarification" }, 
             { name: "Skywalker Rules", id: "skywalkerRules" }];
         let tabContent = tabList.map(x => objective[x.id]);
-
         let tabs = [];
         
         tabList.map((x, i) => {
@@ -52,13 +52,14 @@ export class PlanetDetails extends React.Component {
     }
 
     render() {
-        let { focusPlanet, isSkywalker } = this.props;
-        let lightboxClass = "lightbox", objectiveString = "", objectiveDetails;
+        let { focusPlanet, campaignData } = this.props;
+        let { campaign, planetStatus } = campaignData;
+        let lightboxClass = "lightbox", objectiveString = "", objectiveDetails, status, presenceString;
 
         if(focusPlanet) {
             lightboxClass = `lightbox ${!!focusPlanet ? "show" : ""}`;
 
-            if(isSkywalker) {
+            if(campaign === CAMPAIGN_SKYWALKER) {
                 objectiveString = focusPlanet.skywalkerObjective.name;
                 objectiveDetails = this.renderObjectiveDetails(focusPlanet.skywalkerObjective);
             }
@@ -72,6 +73,31 @@ export class PlanetDetails extends React.Component {
                     objectiveString = "+ " + focusPlanet.ccOtherObjectives + " Objective Cards";
                 }
             }
+
+            status = planetStatus[planets.indexOf(focusPlanet)];
+            console.log("status: ", status);
+            
+            switch(status.presence) {
+                case REBEL_PRESENCE:
+                    presenceString = "Rebel Presence Detected";
+                    break;
+                case REBEL_OUTPOST:
+                    presenceString = "Rebel Outpost Detected";
+                    break;
+                case REBEL_BASE:
+                    presenceString = "Rebel Base Present";
+                    break;
+                case IMPERIAL_BASE:
+                    presenceString = "Imperial Base Present";
+                    break;
+                case BASE_DESTROYED:
+                    presenceString = "Base Destroyed";
+                    break;
+                default:
+                    break;
+            }
+
+            console.log("presenceString: ", presenceString);
         }
 
         return(
@@ -80,6 +106,10 @@ export class PlanetDetails extends React.Component {
                     <div className="imageContainer">
                         <img className="location" src={focusPlanet && focusPlanet.imageLarge} alt={focusPlanet && focusPlanet.name} />
                         <div className="gradient"/>
+                    </div>
+
+                    <div className="status">
+                        <h4>{presenceString}</h4>
                     </div>
 
                     <div className="content">
@@ -92,7 +122,7 @@ export class PlanetDetails extends React.Component {
                         <h4>STRATEGIC EFFECTS</h4>
                         <p>Skilled Spacers</p>
 
-                        <div className={"bonuses" + (isSkywalker ? " hidden" : "")}>
+                        <div className={"bonuses" + (campaign === CAMPAIGN_SKYWALKER ? " hidden" : "")}>
                             <div className="resourceBonusCard">
                                 <p><small>+</small>{focusPlanet && focusPlanet.ccResourceBonusValue}</p>
                                 <p>Resource Bonus</p>

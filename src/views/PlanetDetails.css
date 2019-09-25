@@ -35,6 +35,27 @@
     top: 50px;
 }
 
+.planetDetailsModal p,
+.planetDetailsModal h3,
+.planetDetailsModal h4 {
+    color: rgba(255, 255, 255, 0.8);
+    padding: 0;
+    margin: 0;
+}
+
+.planetDetailsModal h3 {
+    margin-top: 40px;
+    font-size: 40px;
+    text-transform: capitalize;
+}
+
+.planetDetailsModal h4 {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-size: 20px;
+    text-transform: capitalize;
+}
+
 .planetDetailsModal > button.exit {
     position: absolute;
     top: 5px;
@@ -77,6 +98,19 @@
 }
 
 
+/* Status */
+
+.planetDetailsModal > .status {
+    position: absolute;
+    top: 0;
+    left: 100px;
+    min-width: 200px;
+    width: calc(45% - 100px);
+    height: 100%;
+    text-align: right;
+}
+
+
 /* Content */
 
 .planetDetailsModal > .content {
@@ -87,27 +121,6 @@
     width: calc(45% - 100px);
     height: 100%;
     /* background-color: red; */
-}
-
-.planetDetailsModal > .content p,
-.planetDetailsModal > .content h3,
-.planetDetailsModal > .content h4 {
-    color: rgba(255, 255, 255, 0.8);
-    padding: 0;
-    margin: 0;
-}
-
-.planetDetailsModal > .content h3 {
-    margin-top: 40px;
-    font-size: 40px;
-    text-transform: capitalize;
-}
-
-.planetDetailsModal > .content h4 {
-    margin-top: 20px;
-    margin-bottom: 5px;
-    font-size: 20px;
-    text-transform: capitalize;
 }
 
 

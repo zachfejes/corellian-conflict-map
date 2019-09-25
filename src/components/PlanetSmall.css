@@ -222,3 +222,49 @@
     font-size: 12px;
     margin-bottom: 5px;
 }
+
+
+/* Occupation Icons */
+
+.planetSmall .presenceIcon {
+    position: absolute;
+    left: 82px;
+    bottom: -5px;
+    width: 10px;
+    height: 10px;
+    opacity: 0;
+}
+
+.planetSmall .ringIcon:hover ~ .presenceIcon {
+    opacity: 1;
+    transition: 300ms ease;
+    transition-delay: 400ms;
+}
+
+.planetSmall .presenceIcon.rebelPresence {
+    background-image: url("https://icon-library.net/images/rebel-alliance-icon/rebel-alliance-icon-25.jpg");
+    border-radius: 50%;
+}
+
+.planetSmall .presenceIcon.rebelOutpost {
+    /* background-image: url(""); */
+    background-color: red;
+    border-radius: 50%;
+}
+
+.planetSmall .presenceIcon.rebelBase {
+    /* background-image: url(""); */
+    background-color: red;
+}
+
+.planetSmall .presenceIcon.imperialBase {
+    background-image: url("https://myrealdomain.com/images/empire-logo-png.png");
+    background-color: blue;
+    border-radius: 50%;
+}
+
+.planetSmall .presenceIcon.baseDestroyed {
+    /* background-image: url(""); */
+    background-color: yellow;
+    border-radius: 50%;
+}
