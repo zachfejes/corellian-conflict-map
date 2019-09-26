@@ -13,8 +13,8 @@ export class StarMap extends React.Component {
                 id: 1,
                 campaign: CAMPAIGN_CORELLIAN_CONFLICT,
                 players: [0, 1, 2, 3, 4, 5],
-                planetStatus: planets.map(x => ({
-                    presence: BASE_DESTROYED,
+                planetStatus: planets.map((x, i) => ({
+                    presence: i%2===0 && i%5!==0 ? NO_PRESENCE : i%3===0 && i%5!==0 ? REBEL_PRESENCE : i%5===0 ? IMPERIAL_BASE : i%7===0 ? REBEL_OUTPOST : BASE_DESTROYED,
                     localFleetIndex: -1,
                     battleImminent: false,
                 })),
@@ -94,7 +94,7 @@ export class StarMap extends React.Component {
             <div className="campaignToggle">
                 <select onChange={(e) => { this.setCampaign(e.target.value); }}>
                     <option key="0" value={CAMPAIGN_CORELLIAN_CONFLICT} selected={campaign === CAMPAIGN_CORELLIAN_CONFLICT}>{CAMPAIGN_CORELLIAN_CONFLICT}</option>
-                    <option key="1" value={CAMPAIGN_SKYWALKER} seleccted={campaign === CAMPAIGN_SKYWALKER}>{CAMPAIGN_SKYWALKER}</option>
+                    <option key="1" value={CAMPAIGN_SKYWALKER} selected={campaign === CAMPAIGN_SKYWALKER}>{CAMPAIGN_SKYWALKER}</option>
                     <option key="2" value={CAMPAIGN_REBELLION_IN_THE_RIM} selected={campaign === CAMPAIGN_REBELLION_IN_THE_RIM}>{CAMPAIGN_REBELLION_IN_THE_RIM}</option>
                 </select>
             </div>

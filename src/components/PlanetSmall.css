@@ -55,6 +55,12 @@
     opacity: 0;
     z-index: 9;
 }
+.planetSmall > .ringIcon > .dynamicRing.rebel {
+    border-color: transparent rgba(255, 0, 0, 0.8) transparent rgba(255, 0, 0, 0.8);
+}
+.planetSmall > .ringIcon > .dynamicRing.imperial {
+    border-color: transparent rgba(97, 137, 255, 0.8) transparent rgba(97, 137, 255, 0.8);
+}
 
 .planetSmall > .ringIcon:hover > .dynamicRing {
     transition: 200ms;
@@ -228,43 +234,43 @@
 
 .planetSmall .presenceIcon {
     position: absolute;
-    left: 82px;
-    bottom: -5px;
-    width: 10px;
-    height: 10px;
-    opacity: 0;
+    top: -7px;
+    left: calc(35% - 7px);
+    width: 14px;
+    height: 14px;
+    opacity: 0.5;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: 200ms ease;
 }
 
 .planetSmall .ringIcon:hover ~ .presenceIcon {
-    opacity: 1;
-    transition: 300ms ease;
-    transition-delay: 400ms;
+    left: calc(35% + 56px);
+    top: -25px;
+    width: 25px;
+    height: 25px;
+    opacity: 0.8;
+    transition: 200ms ease;
 }
 
+
 .planetSmall .presenceIcon.rebelPresence {
-    background-image: url("https://icon-library.net/images/rebel-alliance-icon/rebel-alliance-icon-25.jpg");
-    border-radius: 50%;
+    background-image: url('../icons/rebel_presence_icon.png');
 }
 
 .planetSmall .presenceIcon.rebelOutpost {
-    /* background-image: url(""); */
-    background-color: red;
-    border-radius: 50%;
+    background-image: url('../icons/rebel_outpost_icon.png');
 }
 
 .planetSmall .presenceIcon.rebelBase {
-    /* background-image: url(""); */
-    background-color: red;
+    background-image: url('../icons/rebel_base_icon.png');
 }
 
 .planetSmall .presenceIcon.imperialBase {
-    background-image: url("https://myrealdomain.com/images/empire-logo-png.png");
-    background-color: blue;
-    border-radius: 50%;
+    background-image: url('../icons/imperial_base_icon.png');
 }
 
 .planetSmall .presenceIcon.baseDestroyed {
-    /* background-image: url(""); */
-    background-color: yellow;
-    border-radius: 50%;
+    background-image: url('../icons/base_destroyed_icon.png');
 }

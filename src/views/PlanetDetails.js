@@ -54,7 +54,7 @@ export class PlanetDetails extends React.Component {
     render() {
         let { focusPlanet, campaignData } = this.props;
         let { campaign, planetStatus } = campaignData;
-        let lightboxClass = "lightbox", objectiveString = "", objectiveDetails, status, presenceString;
+        let lightboxClass = "lightbox", objectiveString = "", objectiveDetails, status, presenceString, presenceClass;
 
         if(focusPlanet) {
             lightboxClass = `lightbox ${!!focusPlanet ? "show" : ""}`;
@@ -79,19 +79,24 @@ export class PlanetDetails extends React.Component {
             
             switch(status.presence) {
                 case REBEL_PRESENCE:
-                    presenceString = "Rebel Presence Detected";
+                    presenceString = "REBEL PRESENCE";
+                    presenceClass = "rebelPresence";
                     break;
                 case REBEL_OUTPOST:
-                    presenceString = "Rebel Outpost Detected";
+                    presenceString = "REBEL OUTPOST";
+                    presenceClass = "rebelOutpost";
                     break;
                 case REBEL_BASE:
-                    presenceString = "Rebel Base Present";
+                    presenceString = "REBEL BASE";
+                    presenceClass = "rebelBase"
                     break;
                 case IMPERIAL_BASE:
-                    presenceString = "Imperial Base Present";
+                    presenceString = "IMPERIAL BASE";
+                    presenceClass = "imperialBase";
                     break;
                 case BASE_DESTROYED:
-                    presenceString = "Base Destroyed";
+                    presenceString = "DEBRIES";
+                    presenceClass = "baseDestroyed";
                     break;
                 default:
                     break;
@@ -109,7 +114,8 @@ export class PlanetDetails extends React.Component {
                     </div>
 
                     <div className="status">
-                        <h4>{presenceString}</h4>
+                        <div className={presenceClass}/>
+                        <h4>{presenceString}<br/>DETECTED</h4>
                     </div>
 
                     <div className="content">

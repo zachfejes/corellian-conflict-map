@@ -25,41 +25,45 @@ class PlanetSmall extends React.Component {
     }
 
     createPresenceClass(presence) {
-        let className = "presenceIcon";
+        let presenceIcon = "presenceIcon", dynamicRing = "dynamicRing";
 
         switch(presence) {
             case REBEL_PRESENCE:
-                className += " rebelPresence";
+                presenceIcon += " rebelPresence";
+                dynamicRing += " rebel";
                 break;
             case REBEL_OUTPOST:
-                className += " rebelOutpost";
+                presenceIcon += " rebelOutpost";
+                dynamicRing += " rebel";
                 break;
             case REBEL_BASE:
-                className += " rebelBase";
+                presenceIcon += " rebelBase";
+                dynamicRing += " rebel";
                 break;
             case IMPERIAL_BASE:
-                className += " imperialBase";
+                presenceIcon += " imperialBase";
+                dynamicRing += " imperial";
                 break;
             case BASE_DESTROYED:
-                className += " baseDestroyed";
+                presenceIcon += " baseDestroyed";
                 break;
             default:
                 break;
         }
 
-        return className;
+        return { presenceClass: presenceIcon, dynamicRingClass: dynamicRing };
     }
 
     render(props) {
         let { planet, campaign, status } = this.props;
         let objectiveString = this.createObjectiveString(planet, campaign);
-        let presenceClass = this.createPresenceClass(status.presence);
+        let { presenceClass, dynamicRingClass } = this.createPresenceClass(status.presence);
 
         return (
             <div className="planetSmall" style={{ top: planet.mapY, left: planet.mapX }}>
                 <div className="ringIcon" onClick={() => { this.props.setFocusPlanet(planet) }}>
                     <img src={planet.imageSmall} alt={planet.imageAlt} />
-                    <div className="dynamicRing"/>
+                    <div className={dynamicRingClass}/>
                 </div>
 
                 <div className={"leftBox" + (campaign === CAMPAIGN_SKYWALKER ? " hidden" : "")}>

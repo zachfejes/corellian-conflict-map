@@ -107,7 +107,7 @@
     min-width: 200px;
     width: calc(45% - 100px);
     height: 100%;
-    text-align: right;
+    text-align: left;
 }
 
 
@@ -208,3 +208,83 @@
     border: none;
     outline: none;
 }
+
+
+
+
+.planetDetailsModal > .status > h4 {
+    margin-top: 40px;
+    margin-left: 60px;
+}
+
+
+.planetDetailsModal > .status .rebelPresence {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    background-image: url('../icons/rebel_presence_icon.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.7;
+    margin-right: 20px;
+}
+
+.planetDetailsModal > .status .rebelOutpost {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    background-image: url('../icons/rebel_outpost_icon.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.7;
+    margin-right: 20px;
+}
+
+.planetDetailsModal > .status .rebelBase {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    background-image: url('../icons/rebel_base_icon.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.7;
+    margin-right: 20px;
+}
+
+.planetDetailsModal > .status .imperialBase {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    background-image: url('../icons/imperial_base_icon.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.7;
+    margin-right: 20px;
+}
+
+.planetDetailsModal > .status .baseDestroyed {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    background-image: url('../icons/base_destroyed_icon.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.7;
+    margin-right: 20px;
+}
+
