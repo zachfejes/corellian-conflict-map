@@ -1,13 +1,91 @@
 import React from 'react';
+import Loader from '../components/Loader';
 import './PlanetDetails.css';
-import { CAMPAIGN_SKYWALKER, planets, REBEL_PRESENCE, REBEL_OUTPOST, REBEL_BASE, IMPERIAL_BASE, BASE_DESTROYED } from '../data';
+import { CAMPAIGN_SKYWALKER, REBEL_PRESENCE, REBEL_OUTPOST, REBEL_BASE, IMPERIAL_BASE, BASE_DESTROYED, OBJECTIVE_TABS } from '../data';
 
+
+//Always Rendered, but lives off-screen. Therefore componentDidMount isn't helpful, componentDidUpdate should be used.
+//Planet data is provided in detail, but objective data is provided by reference. Can be querried asynchronously using: props.focusPlanet.skywalkerObjective.get().then(ref => ref.data()), this then must update the state (which stores this data)
+//Can switch campaign types at any point, which will require an update to the render
+//Cant switch directly from one planet to another, so don't need to worry about that case
+//Since objectives are loaded asynchronously, require a loading version of the panel, and a fully rendered version of the panel.
+//Need a control state for the current tab selected
+//Need to wipe data when the focusPlanet prop is set to undefined
+
+//I've decided we're not allowed to switch campaigns with a planet open. This would not naturally come up in the use of the application.
 
 export class PlanetDetails extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentTabIndex: 0
+            currentTabIndex: 0,
+            objectiveDetails: undefined,
+            loading: false
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        let { focusPlanet, campaignData } = this.props;
+        let { campaign } = campaignData;
+
+        //If we're turning off the modal, clear all local data and reset it
+        if(!focusPlanet && !!prevProps.focusPlanet) {
+            console.log("The modal has been turned off. Now clearing all state data in it.");
+            this.resetState();
+        }
+        //If we're clicking a new planet from not having one selected, 
+        //we need to ensure we have all of its correct data
+        else if(!!focusPlanet && !prevProps.focusPlanet) {
+            console.log("We've clicked on a planet from the map.");
+            if(campaign === CAMPAIGN_SKYWALKER) {
+                console.log("We are in the skywalker campaign.");
+                this.fetchObjectiveDetails(focusPlanet);
+            }
+            else {
+                console.log("We are not in the skywalker campaign.");
+                this.fetchAllObjectiveDetails(focusPlanet);
+            }
+        }
+    }
+
+    resetState() {
+        this.setState({
+            loading: true,
+            currentTabIndex: 0,
+            objectiveDetails: undefined
+        });
+    }
+
+    fetchObjectiveDetails(planet) {
+        this.setState({ loading: true });
+        return planet.skywalkerObjective.get().then(snapshot => {
+            this.setState({
+                objectiveDetails: snapshot.data(),
+                loading: false
+            });
+        })
+    }
+
+    async fetchAllObjectiveDetails(planet) {
+        this.setState({ loading: true });
+        let objectiveDetails = [];
+
+        if(planet.ccObjectives.length === 0) {
+            this.setState({
+                loading: false,
+                objectiveDetails: undefined
+            });
+        }
+        else {
+            objectiveDetails = await Promise.all(planet.ccObjectives.map(objective => {
+                return objective.get().then(snapshot => snapshot.data())
+            }));
+
+            this.setState({
+                loading: false,
+                objectiveDetails
+            })
+
         }
     }
 
@@ -15,23 +93,101 @@ export class PlanetDetails extends React.Component {
         this.setState({ currentTabIndex });
     }
 
-    setFocusPlanet() {
-        this.setCurrentTabIndex(0);
+    clearFocusPlanet() {
+        this.resetState();
         this.props.setFocusPlanet();
     }
 
-    renderObjectiveDetails(objective) {
-        let { currentTabIndex } = this.state;
-        let tabList = [
-            { name: "Setup", id: "setup" }, 
-            { name: "Special Rule", id: "specialRule" },
-            { name: "End of Game", id: "endOfGame" }, 
-            { name: "Erratia", id: "clarification" }, 
-            { name: "Skywalker Rules", id: "skywalkerRules" }];
-        let tabContent = tabList.map(x => objective[x.id]);
-        let tabs = [];
-        
-        tabList.map((x, i) => {
+    isLoading() {
+        let { loading, objectiveDetails } = this.state;
+        let { focusPlanet, campaignData } = this.props;
+
+        if(campaignData.campaign === CAMPAIGN_SKYWALKER || (focusPlanet && focusPlanet.ccObjectives.length > 0)) {
+            return loading || !objectiveDetails || !focusPlanet;
+        }
+        else {
+            return loading || !focusPlanet
+        }
+    }
+
+    /* CLASS LOGIC */
+
+    generateLightboxClass() {
+        let { focusPlanet } = this.props;
+        return `lightbox ${!!focusPlanet ? "show" : ""}`;
+    }
+
+    /* RENDER METHODS */
+
+    renderBackgroundImage() {
+        let { focusPlanet } = this.props;
+        return(
+            <div className="imageContainer">
+                <img className="location" src={focusPlanet && focusPlanet.imageLarge} alt={focusPlanet && focusPlanet.name} />
+                <div className="gradient"/>
+            </div>
+        );
+    }
+
+    renderTitleElements() {
+        let { focusPlanet } = this.props;
+        return([
+                <h3 key="planetName">{focusPlanet && focusPlanet.name.toUpperCase()}</h3>,
+                <p key="planetNameAurebesh" className="aurebesh">{focusPlanet && focusPlanet.name.toUpperCase()}</p>
+        ]);
+    }
+
+    renderStatusElements() {
+        let { focusPlanet, campaignData, planets } = this.props;
+        let { planetStatus } = campaignData;
+        let status = planetStatus[planets.indexOf(focusPlanet)];
+        let presenceString = "", presenceClass = "";
+
+        switch(status.presence) {
+            case REBEL_PRESENCE:
+                presenceString = "REBEL PRESENCE";
+                presenceClass = "rebelPresence";
+                break;
+            case REBEL_OUTPOST:
+                presenceString = "REBEL OUTPOST";
+                presenceClass = "rebelOutpost";
+                break;
+            case REBEL_BASE:
+                presenceString = "REBEL BASE";
+                presenceClass = "rebelBase"
+                break;
+            case IMPERIAL_BASE:
+                presenceString = "IMPERIAL BASE";
+                presenceClass = "imperialBase";
+                break;
+            case BASE_DESTROYED:
+                presenceString = "DEBRIES";
+                presenceClass = "baseDestroyed";
+                break;
+            default:
+                break;
+        }
+
+        return(
+            <div className="status">
+                <div className={presenceClass}/>
+                <h4>{presenceString}<br/>{presenceString ? "DETECTED" : ""}</h4>
+            </div>
+        );
+    }
+
+    renderObjectiveElements() {
+        let { campaignData, focusPlanet } = this.props;
+        let { currentTabIndex, objectiveDetails } = this.state;
+        let objectiveString = "", tabContent, tabs;
+
+        //If we're in the skywalker campaign, we should display the objective with detail tabs
+        if(campaignData.campaign === CAMPAIGN_SKYWALKER) {
+            objectiveString = objectiveDetails.name;
+            tabContent = OBJECTIVE_TABS.map(x => objectiveDetails[x.id]);
+            tabs = [];
+            
+            OBJECTIVE_TABS.map((x, i) => {
                 let classes = "";
 
                 if(currentTabIndex === i) {
@@ -39,109 +195,97 @@ export class PlanetDetails extends React.Component {
                 }
 
                 if(tabContent[i]) {
-                    tabs.push(<button className={classes} onClick={() => this.setCurrentTabIndex(i)}>{x.name}</button>);
+                    tabs.push(<button key={`tab_${i}`} className={classes} onClick={() => this.setCurrentTabIndex(i)}>{x.name}</button>);
                 } 
-            })
+            });
+
+            return([
+                <h4 key="objectivesTitle">OBJECTIVE: {objectiveString}</h4>,
+                <div key="objectivesTabList" className="planetObjective">
+                    <div>{tabs}</div>
+                    <p>{tabContent[currentTabIndex]}</p>
+                </div>
+            ])
+        }
+        //If we're not in the skywalker campaign, we should just list all objectives provieded by the planet
+
+        console.log("focusPlanet.ccObjectives: ", objectiveDetails);
+        
+        if(objectiveDetails && objectiveDetails.length > 0) {
+            objectiveString = objectiveDetails.reduce((acc, x, index) => acc + x.name + (index < objectiveDetails.length - 1 ? ", " : ""), "");
+        }
+
+        if(objectiveString && focusPlanet.ccOtherObjectives > 0) {
+            objectiveString = objectiveString + ", +" + focusPlanet.ccOtherObjectives + " Objective Cards";
+        }
+        else if(focusPlanet.ccOtherObjectives > 0) {
+            objectiveString = "+ " + focusPlanet.ccOtherObjectives + " Objective Cards";
+        }
+
+        return(<h4>OBJECTIVES: {objectiveString}</h4>)
+    }
+
+    renderStrategicEffectElements() {
+        return([
+            <h4 key="strategicEffects">STRATEGIC EFFECTS</h4>,
+            <p key="temp">Skilled Spacers</p>
+        ])
+    }
+
+    renderBonusElements() {
+        let { campaignData, focusPlanet } = this.props;
+        let { campaign } = campaignData;
 
         return(
-            <div className="planetObjective">
-                <div>{tabs}</div>
-                <p>{tabContent[currentTabIndex]}</p>
+            <div className={"bonuses" + (campaign === CAMPAIGN_SKYWALKER ? " hidden" : "")}>
+                <div className="resourceBonusCard">
+                    <p><small>+</small>{focusPlanet && focusPlanet.ccResourceBonusValue}</p>
+                    <p>Resource Bonus</p>
+                </div>
+                <div className="victoryBonusCard">
+                    <p><small>+</small>{focusPlanet && focusPlanet.ccVictoryBonusValue}</p>
+                    <p>Victory Bonus</p>
+                </div>
             </div>
         );
     }
 
     render() {
-        let { focusPlanet, campaignData } = this.props;
-        let { campaign, planetStatus } = campaignData;
-        let lightboxClass = "lightbox", objectiveString = "", objectiveDetails, status, presenceString, presenceClass;
+        let lightboxClass = this.generateLightboxClass();
+        let backgroundElement = this.renderBackgroundImage();
+        let statusElement, objectiveElement, effectElement, titleElement, bonusElement;
 
-        if(focusPlanet) {
-            lightboxClass = `lightbox ${!!focusPlanet ? "show" : ""}`;
-
-            if(campaign === CAMPAIGN_SKYWALKER) {
-                objectiveString = focusPlanet.skywalkerObjective.name;
-                objectiveDetails = this.renderObjectiveDetails(focusPlanet.skywalkerObjective);
-            }
-            else {
-                objectiveString = focusPlanet.ccObjectives.reduce((acc, x, index) => acc + x.name + (index < focusPlanet.ccObjectives.length - 1 ? ", " : ""), "");
-
-                if(objectiveString && focusPlanet.ccOtherObjectives > 0) {
-                    objectiveString = objectiveString + ", +" + focusPlanet.ccOtherObjectives + " Objective Cards";
-                }
-                else if(focusPlanet.ccOtherObjectives > 0) {
-                    objectiveString = "+ " + focusPlanet.ccOtherObjectives + " Objective Cards";
-                }
-            }
-
-            status = planetStatus[planets.indexOf(focusPlanet)];
-            console.log("status: ", status);
-            
-            switch(status.presence) {
-                case REBEL_PRESENCE:
-                    presenceString = "REBEL PRESENCE";
-                    presenceClass = "rebelPresence";
-                    break;
-                case REBEL_OUTPOST:
-                    presenceString = "REBEL OUTPOST";
-                    presenceClass = "rebelOutpost";
-                    break;
-                case REBEL_BASE:
-                    presenceString = "REBEL BASE";
-                    presenceClass = "rebelBase"
-                    break;
-                case IMPERIAL_BASE:
-                    presenceString = "IMPERIAL BASE";
-                    presenceClass = "imperialBase";
-                    break;
-                case BASE_DESTROYED:
-                    presenceString = "DEBRIES";
-                    presenceClass = "baseDestroyed";
-                    break;
-                default:
-                    break;
-            }
-
-            console.log("presenceString: ", presenceString);
+        if(this.isLoading()) {
+            return(
+                <div className={lightboxClass}>
+                    <div className="planetDetailsModal">
+                        {backgroundElement}
+                        <Loader />
+                        <button className="exit" onClick={this.clearFocusPlanet.bind(this)}>X</button>
+                    </div>
+                </div>
+            );
         }
+
+        statusElement = this.renderStatusElements();
+        titleElement = this.renderTitleElements();
+        objectiveElement = this.renderObjectiveElements();
+        effectElement = this.renderStrategicEffectElements();
+        bonusElement = this.renderBonusElements();
 
         return(
             <div className={lightboxClass}>
                 <div className="planetDetailsModal">
-                    <div className="imageContainer">
-                        <img className="location" src={focusPlanet && focusPlanet.imageLarge} alt={focusPlanet && focusPlanet.name} />
-                        <div className="gradient"/>
-                    </div>
-
-                    <div className="status">
-                        <div className={presenceClass}/>
-                        <h4>{presenceString}<br/>DETECTED</h4>
-                    </div>
-
+                    {backgroundElement}
+                    {statusElement}
+                    
                     <div className="content">
-                        <h3>{focusPlanet && focusPlanet.name.toUpperCase()}</h3>
-                        <p className="aurebesh">{focusPlanet && focusPlanet.name.toUpperCase()}</p>
-
-                        <h4>OBJECTIVES: {objectiveString}</h4>
-                        {objectiveDetails}
-
-                        <h4>STRATEGIC EFFECTS</h4>
-                        <p>Skilled Spacers</p>
-
-                        <div className={"bonuses" + (campaign === CAMPAIGN_SKYWALKER ? " hidden" : "")}>
-                            <div className="resourceBonusCard">
-                                <p><small>+</small>{focusPlanet && focusPlanet.ccResourceBonusValue}</p>
-                                <p>Resource Bonus</p>
-                            </div>
-                            <div className="victoryBonusCard">
-                                <p><small>+</small>{focusPlanet && focusPlanet.ccVictoryBonusValue}</p>
-                                <p>Victory Bonus</p>
-                            </div>
-                        </div>
-
+                        {titleElement}
+                        {objectiveElement}
+                        {effectElement}
+                        {bonusElement}
                     </div>
-
-                    <button className="exit" onClick={this.setFocusPlanet.bind(this)}>X</button>
+                    <button className="exit" onClick={this.clearFocusPlanet.bind(this)}>X</button>
                 </div>
             </div>
         );

@@ -3,6 +3,14 @@ export const OBJECTIVE_CATEGORY_ASSAULT = "Assault";
 export const OBJECTIVE_CATEGORY_DEFENSE = "Defense";
 export const OBJECTIVE_CATEGORY_NAVIGATION = "Navigation";
 
+export const OBJECTIVE_TABS = [
+    { name: "Setup", id: "setup" }, 
+    { name: "Special Rule", id: "specialRule" },
+    { name: "End of Round", id: "endOfRound" },
+    { name: "End of Game", id: "endOfGame" }, 
+    { name: "Erratia", id: "clarifications" }, 
+    { name: "Skywalker Rules", id: "skywalkerRules" }];
+
 export const objectives = {
     asteroids: {
         name: "Asteroids",

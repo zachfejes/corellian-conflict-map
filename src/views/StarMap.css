@@ -1,12 +1,3 @@
-p, h1, h2, h3, h4, h5, span, small, a, button {
-    font-family: 'Roboto', sans-serif;
-    font-weight: normal;
-}
-
-p.aurebesh {
-    font-family: 'Aurebesh';
-}
-
 .starMap {
     position: relative;
     width: 100%;
@@ -134,7 +125,7 @@ p.aurebesh {
     left: 10px;
     width: auto;
     height: auto;
-    z-index: 100;
+    z-index: 8;
 }
 
 .starMap > .campaignToggle > button {

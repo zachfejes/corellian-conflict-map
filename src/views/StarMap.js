@@ -1,23 +1,31 @@
 import React from 'react';
+import firebase from "firebase";
+import "firebase/firestore";
 import { PlanetDetails } from "./PlanetDetails";
 import { PlanetSmall, StarField } from '../components';
-import { planets, NO_PRESENCE, REBEL_PRESENCE, REBEL_OUTPOST, REBEL_BASE, IMPERIAL_BASE, BASE_DESTROYED, CAMPAIGN_CORELLIAN_CONFLICT, CAMPAIGN_SKYWALKER, CAMPAIGN_REBELLION_IN_THE_RIM } from '../data';
+import { NO_PRESENCE, REBEL_PRESENCE, REBEL_OUTPOST, REBEL_BASE, IMPERIAL_BASE, BASE_DESTROYED, CAMPAIGN_CORELLIAN_CONFLICT, CAMPAIGN_SKYWALKER, CAMPAIGN_REBELLION_IN_THE_RIM } from '../data';
 import './StarMap.css';
 
 export class StarMap extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            isLoading: true,
+            planets: [],
             focusPlanet: undefined,
+            sessionData: {
+                user: {
+                    firstName: "Zach",
+                    lastName: "Fejes",
+                    email: "",
+                    campaigns: []
+                }
+            },
             campaignData: {
                 id: 1,
                 campaign: CAMPAIGN_CORELLIAN_CONFLICT,
                 players: [0, 1, 2, 3, 4, 5],
-                planetStatus: planets.map((x, i) => ({
-                    presence: i%2===0 && i%5!==0 ? NO_PRESENCE : i%3===0 && i%5!==0 ? REBEL_PRESENCE : i%5===0 ? IMPERIAL_BASE : i%7===0 ? REBEL_OUTPOST : BASE_DESTROYED,
-                    localFleetIndex: -1,
-                    battleImminent: false,
-                })),
+                planetStatus: [],
                 fleets: [
                     {
                         playerID: 0,
@@ -36,6 +44,26 @@ export class StarMap extends React.Component {
                 currentRound: 0
             }
         }
+    }
+
+    componentDidMount() {
+        let { db } = this.props;
+        let { campaignData } = this.state;
+        let planets = [];
+
+        db.collection('planets').get().then(querySnapshot => {
+            querySnapshot.forEach(async (ref) => {
+                planets.push(ref.data());
+            });
+
+            campaignData.planetStatus = planets.map((x, i) => ({
+                presence: i%2===0 && i%5!==0 ? NO_PRESENCE : i%3===0 && i%5!==0 ? REBEL_PRESENCE : i%5===0 ? IMPERIAL_BASE : i%7===0 ? REBEL_OUTPOST : BASE_DESTROYED,
+                localFleetIndex: -1,
+                battleImminent: false,
+            }));
+
+            this.setState({ planets, campaignData, isLoading: false });
+        })
     }
 
     setFocusPlanet(planet) {
@@ -64,7 +92,8 @@ export class StarMap extends React.Component {
     }
 
     renderPlanets() {
-        let { campaign, planetStatus } = this.state.campaignData;
+        let { planets, campaignData } = this.state;
+        let { campaign, planetStatus } = campaignData;
 
         let planetElements = planets.map((planet, index) => 
             <PlanetSmall 
@@ -102,7 +131,10 @@ export class StarMap extends React.Component {
     }
 
     render() {
-        let planetElements = this.renderPlanets();
+        let { isLoading, planets } = this.state;
+        let { db } = this.props;
+
+        let planetElements = isLoading ? undefined : this.renderPlanets();
         let grid = this.renderGrid();
         let hyperlaneElements = this.renderHyperlanes();
         let campaignToggle = this.renderCampaignRulesToggle();
@@ -110,7 +142,7 @@ export class StarMap extends React.Component {
         return(
             <div className="starMap">
                 <StarField />
-                <PlanetDetails focusPlanet={this.state.focusPlanet} campaignData={this.state.campaignData} setFocusPlanet={this.setFocusPlanet.bind(this)} />
+                <PlanetDetails focusPlanet={this.state.focusPlanet} campaignData={this.state.campaignData} setFocusPlanet={this.setFocusPlanet.bind(this)} planets={planets} />
                 {campaignToggle}
                 {grid}
                 {hyperlaneElements}

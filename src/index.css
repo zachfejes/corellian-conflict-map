@@ -37,3 +37,23 @@ button, button:hover, button:active, button:focus {
   outline: 0;
   border: none;
 }
+
+p, h1, h2, h3, h4, h5, span, small, a, button {
+  font-family: 'Roboto', sans-serif;
+  font-weight: normal;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+p.aurebesh {
+  font-family: 'Aurebesh';
+}
+
+p, h3, h4 {
+    color: rgba(255, 255, 255, 0.8);
+    padding: 0;
+    margin: 0;
+}
+
+h4 {
+  font-size: 20px;
+}
