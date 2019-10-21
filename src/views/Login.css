@@ -1,0 +1,11 @@
+.loginCard {
+    position: absolute;
+    top: calc(50% - 150px);
+    left: calc(50% - 225px);
+    width: 450px;
+    height: auto;
+}
+
+.loginCardContent {
+    min-height: 214.8px;
+}

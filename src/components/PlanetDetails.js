@@ -1,20 +1,9 @@
 import React from 'react';
-import Loader from '../components/Loader';
+import Loader from './Loader';
 import './PlanetDetails.css';
 import { CAMPAIGN_SKYWALKER, REBEL_PRESENCE, REBEL_OUTPOST, REBEL_BASE, IMPERIAL_BASE, BASE_DESTROYED, OBJECTIVE_TABS } from '../data';
 
-
-//Always Rendered, but lives off-screen. Therefore componentDidMount isn't helpful, componentDidUpdate should be used.
-//Planet data is provided in detail, but objective data is provided by reference. Can be querried asynchronously using: props.focusPlanet.skywalkerObjective.get().then(ref => ref.data()), this then must update the state (which stores this data)
-//Can switch campaign types at any point, which will require an update to the render
-//Cant switch directly from one planet to another, so don't need to worry about that case
-//Since objectives are loaded asynchronously, require a loading version of the panel, and a fully rendered version of the panel.
-//Need a control state for the current tab selected
-//Need to wipe data when the focusPlanet prop is set to undefined
-
-//I've decided we're not allowed to switch campaigns with a planet open. This would not naturally come up in the use of the application.
-
-export class PlanetDetails extends React.Component {
+class PlanetDetails extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -291,3 +280,5 @@ export class PlanetDetails extends React.Component {
         );
     }
 }
+
+export default PlanetDetails;

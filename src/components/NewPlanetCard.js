@@ -19,7 +19,7 @@ class NewPlanetCard extends React.Component {
             name: "",
             allObjectives: {},
             objectives: [],
-            additionalObjectives: 0,
+            additionalObjectives: undefined,
             resourceBonuses: [],
             strategicEffects: [],
             victoryBonusValue: 0,
@@ -170,7 +170,7 @@ class NewPlanetCard extends React.Component {
     }
 
     render() {
-        let { isLoading, allObjectives, objectives, name, additionalObjectives, mapX, mapY, strategicEffects, resourceBonuses } = this.state;
+        let { isLoading, allObjectives, objectives, name, additionalObjectives, imageSmall, imageLarge, imageAlt, mapX, mapY, strategicEffects, resourceBonuses, skywalkerImperialEffect, skywalkerRebelEffect, skywalkerObjective } = this.state;
         let loader = <p>...</p>;
         let options = Object.keys(allObjectives).map((key,i) => <option key={i} value={key}>{allObjectives[key].data().name}</option>);
         let selectedObjectiveTags = objectives.map((x, i) => <div className="objectiveTag" key={i}><p>{allObjectives[x].data().name}</p><button value={x} onClick={this.removeObjective.bind(this)}>X</button></div>)
@@ -197,7 +197,7 @@ class NewPlanetCard extends React.Component {
                 {selectedStrategicEffects}
 
                 <select onChange={this.addStrategicEffect.bind(this)} defaultValue={-1}>
-                    <option key={0} value={-1} disabled>Select Strategic Effect...</option>
+                    <option key={0} value={-1} disabled>Add Strategic Effect...</option>
                     <option key={STRATEGIC_EFFECT_ASSASSINS} value={STRATEGIC_EFFECT_ASSASSINS}>{STRATEGIC_EFFECT_ASSASSINS}</option>
                     <option key={STRATEGIC_EFFECT_DIPLOMATS} value={STRATEGIC_EFFECT_DIPLOMATS}>{STRATEGIC_EFFECT_DIPLOMATS}</option>
                     <option key={STRATEGIC_EFFECT_HYPERSPACE_SPECIALISTS} value={STRATEGIC_EFFECT_HYPERSPACE_SPECIALISTS}>{STRATEGIC_EFFECT_HYPERSPACE_SPECIALISTS}</option>
@@ -209,7 +209,7 @@ class NewPlanetCard extends React.Component {
                 {selectedResourceBonuses}
                 
                 <select onChange={this.addResourceBonus.bind(this)} defaultValue={-1}>
-                    <option key={0} value={-1} disabled>Select Resource Bonus...</option>
+                    <option key={0} value={-1} disabled>Add Resource Bonus Type...</option>
                     <option key={UPGRADE_TYPE_COMMANDER} value={UPGRADE_TYPE_COMMANDER}>{UPGRADE_TYPE_COMMANDER}</option>
                     <option key={UPGRADE_TYPE_DEFENSIVE_RETROFIT} value={UPGRADE_TYPE_DEFENSIVE_RETROFIT}>{UPGRADE_TYPE_DEFENSIVE_RETROFIT}</option>
                     <option key={UPGRADE_TYPE_EXPERIMENTAL_RETROFIT} value={UPGRADE_TYPE_EXPERIMENTAL_RETROFIT}>{UPGRADE_TYPE_EXPERIMENTAL_RETROFIT}</option>
@@ -226,9 +226,24 @@ class NewPlanetCard extends React.Component {
                     <option key={UPGRADE_TYPE_WEAPONS_TEAM_AND_OFFENSIVE_RETROFIT} value={UPGRADE_TYPE_WEAPONS_TEAM_AND_OFFENSIVE_RETROFIT}>{UPGRADE_TYPE_WEAPONS_TEAM_AND_OFFENSIVE_RETROFIT}</option>
                 </select>
 
+                <input type="text" placeholder="Planet Icon URL" onChange={this.setImageSmall.bind(this)} value={imageSmall} />
+                <input type="text" placeholder="Planet Background URL" onChange={this.setImageLarge.bind(this)} value={imageLarge} />
+                <input type="text" placeholder="Planet Image Alt Text" onChange={this.setImageAlt.bind(this)} value={imageAlt} />
                 <input type="number" placeholder="X%" onChange={this.setMapX.bind(this)} value={mapX} />
                 <input type="number" placeholder="Y%" onChange={this.setMapY.bind(this)} value={mapY} />
 
+                <hr />
+                <p><small>Skywalker Campaign Only</small></p>
+
+                <select onChange={this.setSkywalkerObjective.bind(this)} defaultValue={-1}>
+                    <option disabled value={-1}>Add Skywalker Objective...</option>
+                    {options}
+                </select>
+
+                <input type="text" placeholder="Imperial Victory Effects" onChange={this.setSkywalkerImperialEffect.bind(this)} value={skywalkerImperialEffect} />
+                <input type="text" placeholder="Rebel Victory Effects" onChange={this.setSkywalkerRebelEffect.bind(this)} value={skywalkerRebelEffect} />
+
+                <hr />
                 <button onClick={this.createPlanet.bind(this)} disabled={isLoading ? "disabled" : false}>{isLoading ? "..." : "CREATE"}</button>
 
             </div>

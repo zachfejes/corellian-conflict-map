@@ -1,0 +1,40 @@
+.navBar {
+    position: fixed;
+    top: -10px;
+    left: 100px;
+    right: 100px;
+    height: 70px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-bottom-left-radius: 50px;
+    z-index: 10;
+    transition: 500ms ease;
+    overflow: hidden;
+}
+
+.navBar > div {
+    width: calc(50% - 80px);
+    height: calc(100% - 15px);
+    display: inline-block;
+    text-align: left;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 28px;
+}
+
+.navBar > div:first-child > a {
+    text-decoration: none;
+}
+
+.navBar > div:last-child {
+    text-align: right;
+}
+
+.navBar > div:last-child > a {
+    margin-left: 30px;
+    text-decoration: none;
+}
+
+.navBar.hide {
+    top: -75px;
+}

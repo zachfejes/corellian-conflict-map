@@ -1,0 +1,103 @@
+.card {
+    position: absolute;
+    top: calc(50% - 150px);
+    left: calc(50% - 225px);
+    width: 450px;
+    height: auto;
+    text-align: center;
+}
+
+/* Visible Card */
+
+.card > section:first-child {
+    position: relative;
+    width: 100%;
+    height: auto;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-bottom-left-radius: 25px;
+    text-align: center;
+}
+
+
+.card > section:first-child p,
+.card > section:first-child h4 {
+    color: rgba(255, 255, 255, 0.8);
+    padding: 0;
+    margin: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.card > section:first-child h4 {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-size: 20px;
+    text-transform: capitalize;
+}
+
+.card > section:first-child p.error {
+    color: rgba(255, 50, 50, 0.6);
+    min-height: 16.8px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 12px;
+}
+
+.card > section:first-child input {
+    width: calc(100% - 60px);
+    height: 20px;
+    margin: 20px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    border: none;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: #000000;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.card > section:first-child select {
+    width: calc(100% - 60px + 10px);
+    outline: 2px;
+    border-radius: 3px;
+    outline: 0;
+    border: none;
+    height: 20px;
+    margin-bottom: 10px;
+    background-color: #000000;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.card > section:first-child button {
+    width: auto;
+    height: 30px;
+    color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.1);
+    margin-bottom: 25px;
+    margin-top: 15px;
+    transition: 100ms ease;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-bottom-left-radius: 5px;
+}
+
+.card > section:first-child button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Invisible-back Footer */
+
+.card > section:last-child {
+    position: relative;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.card > section:last-child p {
+    margin-top: 10px;
+    font-size: 12px;
+}

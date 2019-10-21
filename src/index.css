@@ -4,6 +4,11 @@ html, body, body>#root {
   min-height: 100vh;
   margin: 0;
   padding: 0;
+  overflow: auto;
+}
+
+body {
+  background-color: black;
 }
 
 @font-face {
@@ -38,7 +43,7 @@ button, button:hover, button:active, button:focus {
   border: none;
 }
 
-p, h1, h2, h3, h4, h5, span, small, a, button {
+p, h1, h2, h3, h4, h5, span, small, a, button, ul, li {
   font-family: 'Roboto', sans-serif;
   font-weight: normal;
   color: rgba(255, 255, 255, 0.8);
@@ -56,4 +61,11 @@ p, h3, h4 {
 
 h4 {
   font-size: 20px;
+}
+
+.page {
+  width: 100%;
+  min-width: 100%;
+  min-height: calc(100vh - 100px);
+  margin-top: 100px;
 }

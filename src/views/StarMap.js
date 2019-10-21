@@ -1,26 +1,16 @@
 import React from 'react';
-import firebase from "firebase";
-import "firebase/firestore";
-import { PlanetDetails } from "./PlanetDetails";
-import { PlanetSmall, StarField } from '../components';
+import { withFirebase } from "../hocs/Firebase";
+import { PlanetSmall, StarField, PlanetDetails } from '../components';
 import { NO_PRESENCE, REBEL_PRESENCE, REBEL_OUTPOST, REBEL_BASE, IMPERIAL_BASE, BASE_DESTROYED, CAMPAIGN_CORELLIAN_CONFLICT, CAMPAIGN_SKYWALKER, CAMPAIGN_REBELLION_IN_THE_RIM } from '../data';
 import './StarMap.css';
 
-export class StarMap extends React.Component {
+class StarMap extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             isLoading: true,
             planets: [],
             focusPlanet: undefined,
-            sessionData: {
-                user: {
-                    firstName: "Zach",
-                    lastName: "Fejes",
-                    email: "",
-                    campaigns: []
-                }
-            },
             campaignData: {
                 id: 1,
                 campaign: CAMPAIGN_CORELLIAN_CONFLICT,
@@ -47,11 +37,11 @@ export class StarMap extends React.Component {
     }
 
     componentDidMount() {
-        let { db } = this.props;
+        let { firebase } = this.props;
         let { campaignData } = this.state;
         let planets = [];
 
-        db.collection('planets').get().then(querySnapshot => {
+        firebase.planets().get().then(querySnapshot => {
             querySnapshot.forEach(async (ref) => {
                 planets.push(ref.data());
             });
@@ -132,8 +122,6 @@ export class StarMap extends React.Component {
 
     render() {
         let { isLoading, planets } = this.state;
-        let { db } = this.props;
-
         let planetElements = isLoading ? undefined : this.renderPlanets();
         let grid = this.renderGrid();
         let hyperlaneElements = this.renderHyperlanes();
@@ -151,3 +139,5 @@ export class StarMap extends React.Component {
         );
     }
 }
+
+export default withFirebase(StarMap);

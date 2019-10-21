@@ -1,0 +1,12 @@
+.registerCard {
+    position: absolute;
+    top: calc(50% - 150px);
+    left: calc(50% - 225px);
+    width: 450px;
+    height: auto;
+
+}
+
+.registerCardContent {
+    min-height: 278.8px;
+}

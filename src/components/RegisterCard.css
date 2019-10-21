@@ -1,0 +1,47 @@
+/* .registerCard {
+    position: absolute;
+    top: calc(50% - 150px);
+    left: calc(50% - 200px);
+    width: 400px;
+    height: 200px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-bottom-left-radius: 25px;
+    text-align: center;
+}
+
+.registerCard p,
+.registerCard h4 {
+    color: rgba(255, 255, 255, 0.8);
+    padding: 0;
+    margin: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.registerCard h4 {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-size: 20px;
+    text-transform: capitalize;
+}
+
+.registerCard button {
+    width: 191px;
+    height: 46px;
+    background-image: url('../icons/btn_google_signin_light_normal_web.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: transparent;
+    opacity: 1;
+}
+
+.registerCard button:hover {
+    background-image: url('../icons/btn_google_signin_light_focus_web.png');
+}
+
+.registerCard button:active {
+    background-image: url('../icons/btn_google_signin_light_pressed_web.png');
+} */
